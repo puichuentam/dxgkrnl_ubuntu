@@ -98,7 +98,12 @@ sudo chown -R root:root /usr/lib/wsl &&
 echo "/usr/lib/wsl/lib" | sudo tee /etc/ld.so.conf.d/ld.wsl.conf && 
 sudo ldconfig && 
 echo "export PATH=$PATH:/usr/lib/wsl/lib" | sudo tee /etc/profile.d/wsl.sh && 
-sudo chmod +x /etc/profile.d/wsl.sh
+sudo chmod +x /etc/profile.d/wsl.sh &&
+cd /usr/lib/wsl/lib &&
+sudo rm libcuda.so &&
+sudo rm libcuda.so.1 &&
+sudo ln -s libcuda.so.1.1 libcuda.so &&
+sudo ln -s libcuda.so.1.1 libcuda.so.1 &&
 ```
 - Repeat this step 3 if you update your current Windows Host Driver
 ### 4. Install custom dxgkrnl kernel:
